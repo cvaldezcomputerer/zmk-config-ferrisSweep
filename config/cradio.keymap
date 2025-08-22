@@ -5,58 +5,21 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-// Removed: Home row mods macro (as we are expanding them)
-// #define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
-// #define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3  &ht RSHFT k4
+// Removed: Custom Home row mods macros HRML and HRMR
 
 / {
     behaviors {
-        ht: hold_tap {
-            compatible = "zmk,behavior-hold-tap";
+        // Renamed 'ht' to 'mt' and changed compatible to "zmk,behavior-mod-tap"
+        // Increased tapping-term-ms significantly to reduce accidental modifier activation.
+        mt: mod_tap {
+            compatible = "zmk,behavior-mod-tap";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <220>;
+            tapping-term-ms = <500>; // Extreme hold time for modifiers
             quick-tap-ms = <150>;
             require-prior-idle-ms = <100>;
-            bindings = <&kp>, <&kp>;
         };
 
-        // NEW: RGB Underglow behaviors for each layer (as per previous discussion)
-        rgb_default_layer: rgb_default_layer {
-            compatible = "zmk,behavior-rgb-underglow";
-            #binding-cells = <0>;
-            rgb-effect = <0>; // Solid color
-            rgb-hue = <200>;  // Blue
-            rgb-sat = <100>;
-            rgb-brt = <50>;
-        };
-
-        rgb_right_layer: rgb_right_layer { // This is Layer 1
-            compatible = "zmk,behavior-rgb-underglow";
-            #binding-cells = <0>;
-            rgb-effect = <0>;
-            rgb-hue = <120>;  // Green
-            rgb-sat = <100>;
-            rgb-brt = <75>;
-        };
-
-        rgb_left_layer: rgb_left_layer { // This is Layer 2
-            compatible = "zmk,behavior-rgb-underglow";
-            #binding-cells = <0>;
-            rgb-effect = <0>;
-            rgb-hue = <0>;    // Red
-            rgb-sat = <100>;
-            rgb-brt = <30>;
-        };
-
-        rgb_tri_layer: rgb_tri_layer { // This is Layer 3
-            compatible = "zmk,behavior-rgb-underglow";
-            #binding-cells = <0>;
-            rgb-effect = <3>; // Breathing/pulsing effect
-            rgb-hue = <280>;  // Purple
-            rgb-sat = <100>;
-            rgb-brt = <60>;
-        };
+        // Removed: All RGB Underglow behaviors (rgb_default_layer, rgb_right_layer, etc.)
     };
 
     conditional_layers {
@@ -64,8 +27,7 @@
         tri_layer {
             if-layers = <1 2>;
             then-layer = <3>;
-            // Hook the RGB behavior for the tri_layer here
-            on-enter = <&rgb_tri_layer>;
+            // Removed: on-enter = <&rgb_tri_layer>;
         };
     };
 
@@ -78,7 +40,7 @@
             &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  A (LSHFT) │  S (LALT) │  D (LCTRL) │  F (LGUI) │  G       │   │  H       │  J (RGUI) │  K (RCTRL) │  L (RALT) │ ' " (RSHFT) │
-            &ht LSHFT A &ht LALT S &ht LCTRL D &ht LGUI F &kp G          &kp H      &ht RGUI J &ht RCTRL K &ht RALT L &ht RSHFT SQT
+            &mt LSHFT A &mt LALT S &mt LCTRL D &mt LGUI F &kp G          &kp H      &mt RGUI J &mt RCTRL K &mt RALT L &mt RSHFT SQT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
@@ -86,8 +48,7 @@
                                             &lt 2 TAB   &kp ENTER     &kp SPACE  &lt 1 BSPC
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-            // Hook the RGB behavior for the default layer
-            on-enter = <&rgb_default_layer>;
+            // Removed: on-enter = <&rgb_default_layer>;
         };
 
         right_layer { // Layer 1
@@ -105,8 +66,7 @@
                                              &trans     &kp ESC        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-            // Hook the RGB behavior for the right_layer
-            on-enter = <&rgb_right_layer>;
+            // Removed: on-enter = <&rgb_right_layer>;
         };
 
         left_layer { // Layer 2
@@ -124,14 +84,13 @@
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-            // Hook the RGB behavior for the left_layer
-            on-enter = <&rgb_left_layer>;
+            // Removed: on-enter = <&rgb_left_layer>;
         };
 
         tri_layer { // Layer 3 (defined via conditional_layers)
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ RESET    │          │          │          │PROFILE 0 │   │          ──────────┼──────────┼──────────┼──────────┤
+        //│ RESET    │          │          │          │PROFILE 0 │   │          │          │          │          │  RESET   │
            &sys_reset  &trans     &trans     &trans    &bt BT_SEL 0    &trans     &trans     &trans     &trans    &sys_reset
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│BOOTLOADER│          │          │          │PROFILE 1 │   │          │          │          │          │BOOTLOADER│
@@ -143,7 +102,7 @@
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-            // on-enter for tri_layer is handled in conditional_layers
+            // on-enter for tri_layer removed
         };
     };
 };
