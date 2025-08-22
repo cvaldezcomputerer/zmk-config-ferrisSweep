@@ -7,8 +7,7 @@
 
 // Removed: Custom Home row mods macros HRML and HRMR
 
-/ {
-    };
+
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
