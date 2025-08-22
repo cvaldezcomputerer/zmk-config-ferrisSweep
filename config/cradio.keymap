@@ -8,18 +8,6 @@
 // Removed: Custom Home row mods macros HRML and HRMR
 
 / {
-    behaviors {
-        // Renamed 'ht' to 'mt' and changed compatible to "zmk,behavior-mod-tap"
-        // Increased tapping-term-ms significantly to reduce accidental modifier activation.
-        mt: mod_tap {
-            compatible = "zmk,behavior-mod-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <500>; // Extreme hold time for modifiers
-            quick-tap-ms = <150>;
-            require-prior-idle-ms = <100>;
-        };
-
-        // Removed: All RGB Underglow behaviors (rgb_default_layer, rgb_right_layer, etc.)
     };
 
     conditional_layers {
