@@ -5,24 +5,14 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-// Removed: Custom Home row mods macros HRML and HRMR
-// Removed: #include "behaviors/mod-tap.dtsi" // This is NOT needed for the standard &mt
-
 / {
+    // We are no longer defining a 'mt' behavior node here,
+    // as it seems to conflict with ZMK's default 'mod_tap' behavior.
+    // Instead, we will rely on ZMK's predefined 'mod-tap' and adjust its properties
+    // through a separate overlay if necessary, or in the build system.
     behaviors {
-        // Correctly defining 'mt' to override its default properties
-        // This is exactly as shown in the ZMK documentation.
-        // Changed back to 'mt' (not 'mod_tap') as it's directly referencing the alias.
-        mt: mt { // The behavior node is named 'mt', and uses the default 'mod-tap' compatible
-            compatible = "zmk,behavior-mod-tap"; // This links it to the standard mod-tap behavior
-            #binding-cells = <2>;
-            tapping-term-ms = <500>; // Extreme hold time for modifiers (adjust as you find fit)
-            quick-tap-ms = <150>;    // Your desired value
-            require-prior-idle-ms = <100>; // Your desired value
-            // flavor = "tap-preferred" is the default for mod-tap, so it's implicit.
-        };
-
-        // Removed: All RGB Underglow behaviors (rgb_default_layer, rgb_right_layer, etc.)
+        // Only other behaviors should be here if you have any.
+        // If you only had the 'mt' behavior defined here, this block can be empty.
     };
 
     conditional_layers {
@@ -30,7 +20,6 @@
         tri_layer {
             if-layers = <1 2>;
             then-layer = <3>;
-            // Removed: on-enter for RGB
         };
     };
 
@@ -51,7 +40,6 @@
                                             &lt 2 TAB   &kp ENTER     &kp SPACE  &lt 1 BSPC
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-            // Removed: on-enter for RGB
         };
 
         right_layer { // Layer 1
@@ -69,7 +57,6 @@
                                              &trans     &kp ESC        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-            // Removed: on-enter for RGB
         };
 
         left_layer { // Layer 2
@@ -87,7 +74,6 @@
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-            // Removed: on-enter for RGB
         };
 
         tri_layer { // Layer 3 (defined via conditional_layers)
@@ -105,7 +91,6 @@
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
-            // Removed: on-enter for RGB
         };
     };
 };
