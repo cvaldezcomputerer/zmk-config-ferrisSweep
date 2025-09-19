@@ -13,22 +13,22 @@ manifest:
       remote: zmkfirmware
       import: app/west.yml
     - name: zmk-adaptive-key
-            remote: urob
+      remote: urob
       revision: main
     - name: zmk-auto-layer
-            remote: urob
+      remote: urob
       revision: main
     - name: zmk-helpers
-            remote: urob
+      remote: urob
       revision: main
     - name: zmk-leader-key
-            remote: urob
+      remote: urob
       revision: main
     - name: zmk-tri-state
-            remote: urob
+      remote: urob
       revision: main
     - name: zmk-unicode
-            remote: urob
+      remote: urob
       revision: main
   self:
     path: config
