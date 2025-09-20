@@ -1,6 +1,5 @@
 manifest:
   defaults:
-    remote: urob
     revision: v0.3
   remotes:
     - name: zmkfirmware
