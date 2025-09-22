@@ -61,6 +61,18 @@
             key-positions = <13 16>;
             require-prior-idle-ms = <150>;
         };
+
+        brace {
+            bindings = <&kp LEFT_BRACE>;
+            key-positions = <26 27>;
+            require-prior-idle-ms = <150>;
+        };
+
+        Rbrace {
+            bindings = <&kp RIGHT_BRACE>;
+            key-positions = <28 27>;
+            require-prior-idle-ms = <150>;
+        };
     };
 
     keymap {
