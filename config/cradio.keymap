@@ -160,7 +160,7 @@
 &bootloader   &kp N1        &kp NUMBER_2  &kp N3        &trans    &kp HOME      &kp PG_DN  &kp PG_UP  &kp END  &bootloader
 &kp NUMBER_1  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp N5    &kp NUMBER_6  &kp N7     &kp N8     &kp N9   &kp N0
 &kp N0        &kp N7        &kp N8        &kp N9        &kp N0    &trans        &trans     &trans     &trans   &trans
-                                          &trans        &mo 2     &trans        &trans
+                                          &mo 2         &trans    &trans        &trans
             >;
         };
 
@@ -179,6 +179,15 @@
 &bootloader  &trans  &trans  &trans      &bt BT_SEL 1    &trans  &trans  &trans  &trans  &bootloader
 &trans       &trans  &trans  &bt BT_CLR  &bt BT_SEL 2    &trans  &trans  &trans  &trans  &trans
                              &trans      &trans          &trans  &trans
+            >;
+        };
+
+        layer_4 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans    &trans  &trans
             >;
         };
     };
