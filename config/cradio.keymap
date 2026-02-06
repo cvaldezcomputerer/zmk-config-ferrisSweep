@@ -6,11 +6,13 @@
 
 &gresc {
     bindings = <&kp A>, <&kp TAB>;
+
     mods = <(MOD_LGUI)>;
 };
 
 // CONFIGURING STICKY KEYS
 // This configuration makes sticky keys feel "snappy"
+
 &sk {
     release-after-ms = <900>; // Duration the modifier stays active
     quick-release;             // Releases the modifier immediately after you type a key
@@ -27,18 +29,19 @@
         compatible = "zmk,combos";
 
         // --- NEW COMBOS ---
-
         // Mac Screenshot (Cmd + Shift + 4)
         // Trigger: Q + W
+
         combo_screenshot {
             bindings = <&kp LG(LS(N4))>;
-            key-positions = <0 1>; 
+            key-positions = <0 1>;
             require-prior-idle-ms = <150>;
         };
 
         // App Switcher (Cmd + Tab)
         // Trigger: A + S
         // Useful for quickly flipping between two recent apps
+
         combo_app_switch {
             bindings = <&kp LG(TAB)>;
             key-positions = <10 11>;
@@ -46,6 +49,7 @@
         };
 
         // --- EXISTING COMBOS (Kept as is) ---
+
         escape {
             bindings = <&kp ESC>;
             key-positions = <13 16>;
@@ -105,6 +109,16 @@
             bindings = <&kp CAPSLOCK>;
             key-positions = <16 9>;
         };
+
+        back-tab {
+            bindings = <&kp LS(LC(TAB))>;
+            key-positions = <30 31>;
+        };
+
+        fwd-tab {
+            bindings = <&kp LC(TAB)>;
+            key-positions = <33 32>;
+        };
     };
 
     keymap {
@@ -112,20 +126,19 @@
 
         default_layer {
             bindings = <
-&kp Q  &kp W  &kp E  &kp R  &kp T      &kp Y  &kp U  &kp I      &kp O    &kp P
-&kp A  &kp S  &kp D  &kp F  &kp G      &kp H  &kp J  &kp K      &kp L    &kp APOS
-&kp Z  &kp X  &kp C  &kp V  &kp B      &kp N  &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT FSLH
-                     &kp SPACE  &lt 1 TAB  &kp RET  &kp BACKSPACE
+&kp Q  &kp W  &kp E  &kp R      &kp T        &kp Y    &kp U          &kp I      &kp O    &kp P
+&kp A  &kp S  &kp D  &kp F      &kp G        &kp H    &kp J          &kp K      &kp L    &kp APOS
+&kp Z  &kp X  &kp C  &kp V      &kp B        &kp N    &kp M          &kp COMMA  &kp DOT  &mt RIGHT_SHIFT FSLH
+                     &kp SPACE  &lt 1 TAB    &kp RET  &kp BACKSPACE
             >;
         };
 
         right_layer {
             bindings = <
-// LEFT SIDE: Sticky Mods (Callum Style)         // RIGHT SIDE: Nav & Numbers + Special Tab
-&bootloader  &trans     &trans      &trans     &trans       &kp TAB    &kp PG_DN  &kp PG_UP  &kp END  &bootloader
-&sk LCTRL    &sk LALT   &sk LSHIFT  &sk LGUI   &trans       &kp HOME   &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT
-&kp N1       &kp N2     &kp N3      &kp N4     &kp N5       &kp N6     &kp N7     &kp N8     &kp N9   &kp N0
-                                    &mo 0      &trans       &trans     &trans
+&bootloader  &trans    &trans      &trans    &trans    &kp TAB   &kp PG_DN  &kp PG_UP  &kp END  &bootloader
+&sk LCTRL    &sk LALT  &sk LSHIFT  &sk LGUI  &trans    &kp HOME  &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT
+&kp N1       &kp N2    &kp N3      &kp N4    &kp N5    &kp N6    &kp N7     &kp N8     &kp N9   &kp N0
+                                   &mo 0     &trans    &trans    &trans
             >;
         };
     };
